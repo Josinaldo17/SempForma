@@ -1,9 +1,14 @@
+
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity,  } from 'react-native';
+import { OrbitProgress } from 'react-loading-indicators';
 
 import axios from 'axios';
 
-const Alunos_inicio = () => {
+const Horarios = () => {
+  const router = useRouter();
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);  
   
@@ -14,7 +19,7 @@ const Alunos_inicio = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/alunos');
+      const response = await axios.get('http://127.0.0.1:5000/salas');
       setData(response.data); 
       setLoading(false); 
     } catch (error) {
@@ -23,34 +28,30 @@ const Alunos_inicio = () => {
   };
   
   const renderItem = ({ item }) => (
-    
-    <View style={styles.item}>
-      <Text style={styles.text}>Nome: {item.nome}</Text>
-      <Text style={styles.text}>CPF: {item.cpf}</Text>
-      <Text style={styles.text}>Altura: {item.altura}</Text>
-      <Text style={styles.text}>Peso: {item.peso}</Text>
-      <Text style={styles.text}>Telefone: {item.telefone}</Text>
-      <Text style={styles.text}>Data de inserção: {item.data_insercao}</Text>
-      <Text style={styles.text}>Avaliação: {item.avaliacao}</Text>
-    </View>
+
+
+      <View style={styles.item}>
+          <TouchableOpacity onPress={() => router.push('/salas/aulas')} >
+              <Text style={styles.text}>{item.horario}</Text>
+          </TouchableOpacity>
+      </View>
   );
 
   if (loading) {
-    return <Text>Loading...</Text>;  
+    return <OrbitProgress color="#307E89" size="medium" text="" textColor="" />;  
   }
   
   return (
     <View style={styles.container}>
-              <Text>Hoaratios</Text>
+              <Text>Horarios</Text>
       <FlatList
         data={data}           
-        keyExtractor={(item) => item.matricula.toString()}        
+        keyExtractor={(item) => item.id.toString()}        
         renderItem={renderItem}  // Função para renderizar cada item
       />
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -69,4 +70,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Alunos_inicio;
+export default Horarios;

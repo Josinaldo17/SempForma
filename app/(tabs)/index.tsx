@@ -1,12 +1,33 @@
+import { useRouter } from 'expo-router';
+import { View, Button } from 'react-native';
 import React from 'react';
-import { View, Text } from 'react-native';
 
-const ProfileScreen = () => {
+export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <View>
-      <Text>home</Text>
+      <Button
+        title="Aula"
+        onPress={() => router.push('/salas/horarios')} 
+      />
+      <Button
+        title="Salas"
+        onPress={() => router.push('/salas/horarios')} 
+      />
+      <Button
+        title="Professor"
+        onPress={() => router.push('/salas/horarios')} 
+      />
+      <Button
+        title="Alunos"
+        onPress={() => router.push('/salas/horarios')}
+      />
+      <Button
+        title="Avaliaçao"
+        onPress={() => router.push('/salas/horarios')} 
+      />
     </View>
-  );
-};
 
-export default ProfileScreen;
+  );
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, ScrollView, TextInput} from 'react-native';
 
-const App = () => {
+const Midia = () => {
   return (
     <View>
       <Text>midia</Text>
@@ -9,4 +9,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Midia;
