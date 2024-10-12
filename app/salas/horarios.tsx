@@ -1,13 +1,36 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity,  } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { OrbitProgress } from 'react-loading-indicators';
-
+import { construirUrl } from '@/assets/padroes/apiConfig';
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
 const Horarios = () => {
   const router = useRouter();
+  const navigation = useNavigation();
+
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: 'Salas',
+      headerTitleAlign: 'center',
+      headerRight: () => (
+        <Button
+          onPress={() => alert('Botão foi pressionado!')}
+          title="Info"
+          color="#000"
+        />
+      ),
+    });
+  }, [navigation]);
+
+  const Olhar_aulas = () => {
+    const aula = { message: 'Olá, Josinaldo' };
+    
+    router.push({ pathname: '/salas/aulas', params: { data: aula } });
+  };
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);  
@@ -19,7 +42,7 @@ const Horarios = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/salas');
+      const response = await axios.get(construirUrl('salas'));
       setData(response.data); 
       setLoading(false); 
     } catch (error) {
@@ -31,7 +54,7 @@ const Horarios = () => {
 
 
       <View style={styles.item}>
-          <TouchableOpacity onPress={() => router.push('/salas/aulas')} >
+          <TouchableOpacity onPress={Olhar_aulas} >
               <Text style={styles.text}>{item.horario}</Text>
           </TouchableOpacity>
       </View>

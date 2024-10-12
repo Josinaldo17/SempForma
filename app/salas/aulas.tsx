@@ -1,13 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native';
+import { View, FlatList, Text, StyleSheet, TouchableOpacity, TextInput, Button, ScrollView } from 'react-native';
 import axios from 'axios';
 import { OrbitProgress } from 'react-loading-indicators';
+import { formatarData } from '@/assets/padroes/funçoes';
+import { construirUrl } from '@/assets/padroes/apiConfig';
+import { useNavigation } from '@react-navigation/native';
 
-const Aulas = () => {
-  const [data, setData] = useState([]);
+
+const Aulas = () => {  
+  const navigation = useNavigation();
+  const [aulas, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [treino, setTreino] = useState('');  
-  const [professor, setProfessor] = useState(''); 
+  const [treino, setTreino] = useState('');
+  const [professor, setProfessor] = useState('');
+  const [titulo, setTitulo] = useState('09:00');
+
+
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: titulo,
+      headerTitleAlign: 'center',
+      headerRight: () => (
+        <Button
+          onPress={() => alert('Botão foi pressionado!')}
+          title="Info"
+          color="#000"
+        />
+      ),
+    });
+  }, [navigation]);
 
   useEffect(() => {
     fetchData();
@@ -15,44 +37,46 @@ const Aulas = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/salas/2/2024-09-24');
+      const response = await axios.get(construirUrl('salas/2/2024-09-24'));
       setData(response.data);
       setLoading(false);
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
+      setLoading(false);
     }
   };
 
-  const renderItem = ({ item }) => (
+  const renderAlunoItem = ({ item }) => (
     <View style={styles.item}>
-      <TouchableOpacity onPress={() => {
-        setTreino(item.nome_treino);
-        setProfessor(item.nome_professor);
-      }}>
-        <Text style={styles.text}>OO  {item.nome_aluno}  | {item.matricula_aluno} </Text><Button title='Falta'/>
+       <TouchableOpacity
+        onPress={() => {
+          setTreino(item.nome_treino);
+          setProfessor(item.nome_professor);
+        }}
+      >
+      <Text style={styles.text}>Nome:  |  {item}</Text><Button title="Falta" />
       </TouchableOpacity>
     </View>
   );
 
-  if (loading) {
-    return <OrbitProgress color="#307E89" size="medium" text="" textColor="" />;  
-  }
-
-  return (
-    <View style={styles.container}>
-      
+  const renderItem = (item) => (
+    
+    <View style={styles.item} key={item.id}>
       <View style={styles.fixedContainer}>
-        <Text style={styles.fixedText}>07:00</Text>
-        <Text style={styles.fixedText}>19/03/2000</Text>
+        
+
 
         
+        <Text style={styles.fixedText}>{item.horario}</Text>
+        <Text style={styles.fixedText}>{formatarData(item.dia)}</Text>
+
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>V</Text>
         </TouchableOpacity>
 
         <TextInput
           style={styles.input}
-          placeholder="Nome do Treino"
+          placeholder={item.nome_treino}
           value={treino}
           onChangeText={(text) => setTreino(text)}
         />
@@ -63,19 +87,28 @@ const Aulas = () => {
 
         <TextInput
           style={styles.input}
-          placeholder="Nome do Professor"
+          placeholder={item.nome_professor}
           value={professor}
           onChangeText={(text) => setProfessor(text)}
         />
       </View>
 
-      
       <FlatList
-        data={data}
-        keyExtractor={(item) => item.matricula_aluno.toString()}
-        renderItem={renderItem}
-      />
+          data={item.alunos}
+          keyExtractor={(aluno) => aluno.toString()}
+          renderItem={renderAlunoItem} 
+        />
     </View>
+  );
+
+  if (loading) {
+    return <OrbitProgress color="#307E89" size="medium" text="" textColor="" />;
+  }
+
+  return (
+    <ScrollView style={styles.container}>
+      {aulas.map((item) => renderItem(item))}
+    </ScrollView>
   );
 };
 
@@ -86,11 +119,11 @@ const styles = StyleSheet.create({
   },
   fixedContainer: {
     alignItems: 'center',
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   fixedText: {
     fontSize: 16,
-    marginVertical: 5, 
+    marginVertical: 5,
   },
   button: {
     padding: 10,
@@ -116,7 +149,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
-    alignItems: 'center',
   },
   text: {
     fontSize: 16,
