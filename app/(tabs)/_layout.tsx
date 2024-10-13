@@ -18,7 +18,7 @@ export default function TabLayout() {
     >
       {/* Aba Home */}
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
