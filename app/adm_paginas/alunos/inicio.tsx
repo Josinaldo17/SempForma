@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { UseNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import { OrbitProgress } from 'react-loading-indicators';
 
@@ -7,7 +7,7 @@ import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
 
 const Alunos_inicio = () => {
-  const navigation = UseNavigation();
+  const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);  
   

@@ -1,62 +1,53 @@
- 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import jwt
+from sqlalchemy import text
 import datetime
-from functools import wraps
+from config import Config, db 
+from gets.endpoints_get import select_alunos, select_aluno, select_sala, select_dados_da_sala, select_professor, select_avaliacao
+from posts.endpoints_jwt import  autenticar_usuario, token_required
 
 app = Flask(__name__)
-
-# Chave secreta para codificação do JWT
-app.config['SECRET_KEY'] = 'Sempreemforma'
-
-# Ativa o CORS para todas as rotas
+app.config.from_object(Config) 
 CORS(app)
+db.init_app(app)
 
-# Simulação de um banco de dados de usuários
-usuarios = {
-    "usuario1": "senha1",  # Usuário: senha
-    "usuario2": "senha2"
-}
 
-# Decorador para verificar o token JWT
-def token_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = request.args.get('token')  # Token deve ser enviado na query string
-        if not token:
-            return jsonify({'message': 'Token é necessário!'}), 403
+@app.route('/alunos', methods=['GET'])
+def get_alunos():
+    return select_alunos()
 
-        try:
-            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-        except:
-            return jsonify({'message': 'Token inválido!'}), 403
+@app.route('/alunos/<int:matricula>', methods=['GET'])
+def get_aluno(matricula):
+    return select_aluno(matricula)
 
-        return f(*args, **kwargs)
+@app.route('/professores', methods=['GET'])
+def get_professores():
+    return select_professor()
 
-    return decorated
+@app.route('/salas', methods=['GET'])
+def get_sala():
+    return select_sala()
 
-# Rota de login
+@app.route('/salas/<int:id>/<string:dia>', methods=['GET'])
+def get_dados_sala(id,dia):
+    return select_dados_da_sala(id,dia)
+
+@app.route('/avaliaçoes', methods=['GET'])
+def get_avalicao():
+    return select_avaliacao()
+
 @app.route('/login', methods=['POST'])
 def login():
-    auth = request.json
+    data = request.json 
+    return autenticar_usuario(data)   
 
-    username = auth.get('username')
-    password = auth.get('password')
 
-    if username not in usuarios or usuarios[username] != password:
-        return jsonify({'message': 'Credenciais inválidas!'}), 401
-
-    token = jwt.encode({'user': username, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)},
-                        app.config['SECRET_KEY'])
-
-    return jsonify({'token': token})
-
-# Rota protegida
-@app.route('/protected', methods=['GET'])
+@app.route('/verificar_token', methods=['GET'])
 @token_required
-def protected():
-    return jsonify({'message': 'Acesso autorizado! Você está acessando a rota protegida.'})
+def verificar_token(data):
+    return jsonify({'message': 'Token é válido!', 'data': data})
+
 
 if __name__ == '__main__':
     app.run(debug=True)

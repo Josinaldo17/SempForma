@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRouter } from 'expo-router';
+import { useRouter, Stack } from 'expo-router';
 import { View, TextInput, Button, Alert, Text, StyleSheet } from 'react-native';
 
 const LoginScreen = ({ navigation }) => {
@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }) => {
             if (response.ok) {
                 setToken(data.token); // Armazena o token retornado
                 Alert.alert('Sucesso', 'Login realizado com sucesso!'); // Alerta de sucesso
-                router.push('/(tabs)/home');
+                router.push('/(alunos)/aluno_midia');
             } else {
                 Alert.alert('Erro', data.message); // Alerta de erro
             }
@@ -38,6 +38,10 @@ const LoginScreen = ({ navigation }) => {
     };
 
     return (
+        
+    <>
+
+      <Stack.Screen options={{ headerShown: false }} />
         <View style={styles.container}>
             <TextInput
                 placeholder="Nome de usuário"
@@ -55,6 +59,8 @@ const LoginScreen = ({ navigation }) => {
             <Button title="Entrar" onPress={handleLogin} />
             {token ? <Text style={styles.tokenText}>Token: {token}</Text> : null} {/* Exibe o token se existir */}
         </View>
+          
+    </>
     );
 };
 

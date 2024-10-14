@@ -25,29 +25,32 @@ export default function HomeScreen() {
   }, [navigation]);
 
   return (
+
+
     <View>
       <Button
         title="Aula"
-        onPress={() => router.push('/salas/aulas')} 
+        onPress={() => router.push('/adm_paginas/salas/aulas')} 
       />
       <Button
         title="Salas"
-        onPress={() => router.push('/salas/horarios')} 
+        onPress={() => router.push('/adm_paginas/salas/horarios')} 
       />
       <Button
         title="Professor"
-        onPress={() => router.push('/professores/professores_adm')} 
+        onPress={() => router.push('/adm_paginas/professores/professores_adm')} 
       />
       <Button
         title="Alunos"
-        onPress={() => router.push('/alunos/inicio')}
+        onPress={() => router.push('/adm_paginas/alunos/inicio')}
       />
       <Button
         title="Avaliaçao"
-        onPress={() => router.push('/avaliacao/av')} 
+        onPress={() => router.push('/adm_paginas/avaliacao/av')} 
       />
       
     </View>
+
 
   );
 }

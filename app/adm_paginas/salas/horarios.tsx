@@ -29,7 +29,7 @@ const Horarios = () => {
   const Olhar_aulas = () => {
     const aula = { message: 'Olá, Josinaldo' };
     
-    router.push({ pathname: '/salas/aulas', params: { data: aula } });
+    router.push({ pathname: '/adm_paginas/salas/aulas', params: { data: aula } });
   };
 
   const [data, setData] = useState([]);
