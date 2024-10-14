@@ -2,37 +2,22 @@ import { useRouter, Stack } from 'expo-router';
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable'; // Importar Animatable
-import { construirUrl } from '@/assets/padroes/apiConfig';
 
-const LoginScreen = () => {
-    const router = useRouter();
-    const [token, setToken] = useState('vedadeiro');
+const Prof_home = () => {
+    
 
     return (
         <>
             <Stack.Screen options={{ headerShown: false }} />
 
-            <View style={styles.container}>
                 
                 <View style={styles.imageContainer}>
                     <Image 
-                        source={require('../assets/images/logo-projeto.png')} 
+                        source={require('@/assets/images/logo-projeto.png')} 
                         style={styles.logo} 
                         resizeMode='contain' 
                     />
                 </View>
-
-                <Animatable.View 
-                    animation="slideInUp"    
-                    duration={2000}          
-                    style={styles.rodape}
-                >
-                    <Text style={styles.title}>Acompanhe seu desempenho em treinamento funcional de qualquer lugar!</Text>
-                    <TouchableOpacity style={styles.botao} onPress={ () => router.push('/redirecionarHome')}>
-                        <Text style={styles.textBotao}>Acessar</Text>
-                    </TouchableOpacity>
-                </Animatable.View>
-            </View>
         </>
     );
 };
@@ -64,12 +49,12 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     title: {
-        fontSize: 24,
+        fontSize: 25,
         fontWeight: 'bold',
         marginTop: '2%',
         marginBottom: '10%',
         color: '#000',
-        textAlign: 'left', 
+        textAlign: 'center',
     },
     botao: {
         paddingVertical: 8,
@@ -90,4 +75,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default LoginScreen;
+export default Prof_home;

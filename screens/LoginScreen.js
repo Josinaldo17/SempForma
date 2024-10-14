@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
 import { useRouter, Stack } from 'expo-router';
 import { View, TextInput, Button, Alert, Text, StyleSheet } from 'react-native';
+import { amazenar_noApp, removeData } from '@/assets/padroes/funçoes';
+import { construirUrl } from '@/assets/padroes/apiConfig';
 
 const LoginScreen = ({ navigation }) => {
     const router = useRouter();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [token, setToken] = useState(''); // Estado para armazenar o token
+    const [matricula, setMatricula] = useState('');
+    const [senha, setSenha] = useState('');
 
-    const handleLogin = async () => {
-        console.log('Login button clicked'); // Log para verificar se o botão foi clicado
+
+    const verificaLogin = async () => {
+        console.log('Login button clicked'); 
         try {
-            const response = await fetch('http://127.0.0.1:5000/login', {
+            const response = await fetch(construirUrl('login'), {
+                
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // Adiciona o cabeçalho correto
+                    'Content-Type': 'application/json', 
                 },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ "matricula": matricula, "senha": senha }),
             });
 
-            console.log('Request sent'); // Verifica se a requisição foi enviada
-
-            const data = await response.json(); // Tenta converter o corpo da resposta em JSON
-            console.log('Response:', data); // Verifica a resposta do backend
+            console.log('Request sent'); 
+            const data = await response.json(); 
+            console.log('Response:', data); 
 
             if (response.ok) {
-                setToken(data.token); // Armazena o token retornado
-                Alert.alert('Sucesso', 'Login realizado com sucesso!'); // Alerta de sucesso
-                router.push('/(alunos)/aluno_midia');
+                amazenar_noApp('token', data.token);
+                amazenar_noApp('matricula', matricula);
+                Alert.alert('Sucesso', 'Login realizado com sucesso!'); 
+                router.push('/redirecionarHome');
             } else {
-                Alert.alert('Erro', data.message); // Alerta de erro
+                Alert.alert('Erro', data.message); 
             }
         } catch (error) {
-            console.log('Error:', error); // Loga o erro no console
-            Alert.alert('Erro', 'Erro ao se conectar à API'); // Alerta de erro de conexão
+            console.log('Error:', error); 
+            Alert.alert('Erro', 'Erro ao se conectar à API'); 
         }
     };
 
@@ -45,19 +48,18 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.container}>
             <TextInput
                 placeholder="Nome de usuário"
-                value={username}
-                onChangeText={setUsername}
+                value={matricula}
+                onChangeText={setMatricula}
                 style={styles.input}
             />
             <TextInput
                 placeholder="Senha"
-                value={password}
-                onChangeText={setPassword}
+                value={senha}
+                onChangeText={setSenha}
                 secureTextEntry
                 style={styles.input}
             />
-            <Button title="Entrar" onPress={handleLogin} />
-            {token ? <Text style={styles.tokenText}>Token: {token}</Text> : null} {/* Exibe o token se existir */}
+            <Button title="Entrar" onPress={verificaLogin} />
         </View>
           
     </>
