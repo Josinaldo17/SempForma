@@ -48,11 +48,13 @@ export default function HomeScreen() {
 
   return (
     <View  style={{  flex: 1}}>
-      <View style={{ backgroundColor: 'green', padding: 20, flex: 1}}>
-        <View style={{ flexDirection: 'row'}}>
-            <View style={{ flexDirection: 'column'}}>
+      <View style={{ backgroundColor: 'green', padding: 10, flex: 1}}>
+        <View style={{ flexDirection: 'row', backgroundColor: 'yellow', flex: 1}}>
+            <View style={{ flexDirection: 'column', backgroundColor: 'purple', flex: 2}}>
 
-                <TouchableOpacity style={{ backgroundColor: 'blue'}} onPress={() => router.push('/adm_paginas/salas/aulas')} >
+            <View style={{ backgroundColor: '#2C166C', padding: 20, flex: 1.1}}>
+
+                <TouchableOpacity style={{ backgroundColor: 'blue' , height: '100%'}} onPress={() => router.push('/adm_paginas/salas/aulas')} >
 
 
                   <Image
@@ -62,7 +64,10 @@ export default function HomeScreen() {
 
                   <Text>Aula</Text>
 
-                </TouchableOpacity>                
+                </TouchableOpacity> 
+
+                </View>
+                 <View style={{ backgroundColor: '#E08F4C', padding: 20, flex: 0.9}}>             
 
                 <TouchableOpacity style={{ backgroundColor: 'blue'}} onPress={() => router.push('/adm_paginas/professores/professores_adm')} >
 
@@ -75,12 +80,16 @@ export default function HomeScreen() {
                   <Text>Professor</Text>
 
                 </TouchableOpacity>
+                </View>  
                 
             </View>
 
-            <View style={{ flexDirection: 'column'}}>
+            <View style={{ flexDirection: 'column', backgroundColor: 'brown', flex: 2}} >
+
+
+            <View style={{ backgroundColor: '#376990', padding: 20, flex: 0.6}}>  
                 
-                <TouchableOpacity style={{ backgroundColor: 'blue'}} onPress={() => router.push('/adm_paginas/salas/horarios')}>
+                <TouchableOpacity style={{ backgroundColor: 'blue', width: '100%', height: '100%'}} onPress={() => router.push('/adm_paginas/salas/horarios')}>
 
 
                   <Image
@@ -91,6 +100,9 @@ export default function HomeScreen() {
                   <Text>Salas</Text>
 
                 </TouchableOpacity>
+
+                </View>
+                <View style={{ backgroundColor: '#4D429B', padding: 20, flex: 1}}>    
                 
                 <TouchableOpacity style={{ backgroundColor: 'blue'}} onPress={() => router.push('/adm_paginas/alunos/inicio')}>
                 
@@ -102,10 +114,12 @@ export default function HomeScreen() {
                   <Text>Alunos</Text>
 
                 </TouchableOpacity>
+                </View>
+
             </View>
 
         </View>
-        <View>
+        <View  style={{ flexDirection: 'column', backgroundColor: 'white', flex: 0.5}}>
 
         <TouchableOpacity style={{ backgroundColor: 'blue'}} onPress={() => router.push('/adm_paginas/avaliacao/av')} >
 

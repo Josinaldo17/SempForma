@@ -27,7 +27,7 @@ const LoginScreen = () => {
                     duration={2000}          
                     style={styles.rodape}
                 >
-                    <Text style={styles.title}>Acompanhe seu desempenho em treinamento funcional de qualquer lugar!</Text>
+                    <Text style={styles.title}>Acompanhe seu desempenho e seus treinamentos funcional de qualquer lugar!</Text>
                     <TouchableOpacity style={styles.botao} onPress={ () => router.push('/redirecionarHome')}>
                         <Text style={styles.textBotao}>Acessar</Text>
                     </TouchableOpacity>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     title: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: 'bold',
         marginTop: '2%',
         marginBottom: '10%',

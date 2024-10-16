@@ -1,10 +1,23 @@
 import { useRouter, Stack } from 'expo-router';
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import * as Animatable from 'react-native-animatable'; // Importar Animatable
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Prof_home = () => {
     
+    const router = useRouter();
+
+    
+    const sair = async () => {
+  
+      const deleteToken = await AsyncStorage.removeItem('token');
+      const deleteMatricula = await AsyncStorage.removeItem('matricula');
+      router.push('/');
+      
+  
+  
+    }
 
     return (
         <>
@@ -18,6 +31,9 @@ const Prof_home = () => {
                         resizeMode='contain' 
                     />
                 </View>
+                <TouchableOpacity style={{backgroundColor : 'red'} } onPress={sair} >
+                    <Text>Sair</Text>
+                </TouchableOpacity>
         </>
     );
 };
