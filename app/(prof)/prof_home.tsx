@@ -23,6 +23,8 @@ const Prof_home = () => {
         <>
             <Stack.Screen options={{ headerShown: false }} />
 
+            <Text> Home professor Exempoloooooo</Text>
+
                 
                 <View style={styles.imageContainer}>
                     <Image 
