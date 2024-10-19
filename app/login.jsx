@@ -3,6 +3,7 @@ import { useRouter, Stack, Link } from 'expo-router';
 import { View, TextInput, Button, Alert, ActivityIndicator, StyleSheet, Text,Image, TouchableOpacity} from 'react-native';
 import { amazenar_noApp } from '@/assets/padroes/funçoes';
 import { construirUrl } from '@/assets/padroes/apiConfig';
+import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
 const LoginScreen = () => {
     const router = useRouter();
@@ -115,14 +116,14 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,         
-        backgroundColor: '#282525',      
+        backgroundColor:  estilo_padrao.Colors.background,     
         justifyContent: 'center',
              
     },
     input: {
         marginBottom: 10,
         borderWidth: 3,
-        borderColor: '#307E89', 
+        borderColor:  estilo_padrao.Colors.primary, 
         padding: 15,
         color: 'white', 
         borderRadius: '10%',
@@ -140,11 +141,11 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: '100%',
-        height: '35%', 
+        height: '50%', 
         marginBottom: 40,
     },
     container_acesso: {
-        flex: 2,
+        flex: 3.4,
         alignItems: 'center',
 
     },
@@ -163,11 +164,11 @@ const styles = StyleSheet.create({
 
     },
     link_cadastro:{
-        color: '#307E89'
+        color: estilo_padrao.Colors.primary
 
     },
     button:{
-        backgroundColor: '#307E89',
+        backgroundColor: estilo_padrao.Colors.primary,
         width: '50%',
         padding: 10,
         alignItems: 'center',

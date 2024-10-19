@@ -49,7 +49,7 @@ export default function RootLayout() {
           name="(adm)"
           options={{ 
             title: '',
-            headerShown: true, // Mostra o cabeçalho
+            headerShown: true, 
             headerTitleAlign: 'center', // Alinha o título ao centro
             headerRight: () => (
             <>
@@ -65,8 +65,8 @@ export default function RootLayout() {
               
                 
             ),
-            headerBackground: () => (
-              <View style={{ flexDirection: 'row', padding: '5%' }}>
+            headerLeft: () => (
+              <View style={{ flexDirection: 'row', padding: '5%', margin: 10 }}>
                 <TouchableOpacity style={{ flexDirection: 'row'}}>
                 <Image
                   source={require('@/assets/images/usuario-de-perfil.png')}
@@ -77,11 +77,20 @@ export default function RootLayout() {
 
                 </TouchableOpacity>
 
-                <Image
-                  source={require('@/assets/images/logo-projeto.png')}
-                  style={{ width: '40%', height: 30, marginLeft: 25 }}
-                />
               </View>
+            ),
+            headerBackVisible: false,
+            headerBackground: () => (
+              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'  }}>
+                <Image
+                  source={require('@/assets/images/logo-header.png')}
+                  style={{ 
+                    width: '100%',  // Largura adaptável ao tamanho da tela
+                    height: '100%', // Altura adaptável ao tamanho da tela
+                    resizeMode: 'cover', // Adapta a imagem ao tamanho da tela
+                  }}
+                />
+            </View>
             ),
           }}
         />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
 import { OrbitProgress } from 'react-loading-indicators';
+import { construirUrl } from '@/assets/padroes/apiConfig';
 
 import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
@@ -31,7 +32,7 @@ const Alunos_inicio = () => {
 
   const Buscar_dados = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/alunos');
+      const response = await axios.get(construirUrl('alunos'));
       setData(response.data); 
       setLoading(false); 
     } catch (error) {

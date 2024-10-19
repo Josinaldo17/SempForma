@@ -1,32 +1,83 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { StyleSheet, Text } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, FlatList, Image, StyleSheet } from 'react-native';
+import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+const data = [
+  { matricula: '1234', av: true, vencimento: '00/00/00' },
+  { matricula: '1234', av: false, vencimento: '00/00/00' },
+  // Continue para os outros itens...
+];
 
 export default function Financeiro() {
+  const renderRow = ({ item }) => (
+    <View style={styles.row}>
+      <Text style={styles.cell}>{item.matricula}</Text>
+      <Image
+        source={item.av ? require('@/assets/images/icone-home.png') : require('@/assets/images/icone-home.png')}
+        style={styles.icon}
+      />
+      <Text style={styles.cell}>{item.vencimento}</Text>
+      <TouchableOpacity style={styles.alertButton}>
+        <Text style={styles.alertButtonText}>Alertar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
-     
-      <Text>home</Text>
-     
-      
-      
-     
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Financeiro</Text>
+      <View style={styles.tableHeader}>
+        <Text style={styles.headerText}>Matricula</Text>
+        <Text style={styles.headerText}>AV</Text>
+        <Text style={styles.headerText}>Vencimento</Text>
+        <Text style={styles.headerText}></Text>
+      </View>
+      <FlatList
+        data={data}
+        renderItem={renderRow}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: 
+  { flex: 1, 
+    backgroundColor: estilo_padrao.Colors.background,
+   },
+  title: 
+  { fontSize: 24,
+    fontWeight: 'bold', 
+    color: '#fff', 
+    textAlign: 'center', 
+    margin: 20 },
+  tableHeader: 
+  { flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    paddingHorizontal: 20 },
+  headerText: 
+  { color: '#fff', 
+    fontWeight: 'bold' 
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  row: 
+  { flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    padding: 15, 
+    backgroundColor: '#006c81', 
+    marginVertical: 5 },
+   cell: {
+     color: '#fff', 
+     width: '25%' },
+  icon: { width: 24, 
+    height: 24 },
+  alertButton: 
+  { backgroundColor: '#cc0000', 
+    padding: 10, 
+    borderRadius: 5 },
+  alertButtonText: 
+  { color: '#fff', 
+    fontWeight: 'bold' 
   },
 });

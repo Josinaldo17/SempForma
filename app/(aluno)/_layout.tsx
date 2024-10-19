@@ -3,7 +3,7 @@ import React from 'react';
 import { Image } from 'react-native';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import styles from '@/assets/padroes/styles';
+import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -11,8 +11,13 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: styles.Colors.primary,
-        tabBarInactiveTintColor: '#888', 
+        tabBarActiveTintColor: '#0C5660',
+        tabBarInactiveTintColor: '#000',
+        tabBarStyle: {
+          backgroundColor: estilo_padrao.Colors.primary, 
+          borderTopColor: estilo_padrao.Colors.primary, 
+          paddingBottom: 3, 
+        }, 
         headerShown: false,
       }}
     >
@@ -29,7 +34,6 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Aba Notificações */}
       <Tabs.Screen
         name="aluno_notificacao"
         options={{
@@ -41,7 +45,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
     </Tabs>
   );
 }
