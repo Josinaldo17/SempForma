@@ -1,6 +1,6 @@
 const Colors = {
     white: 'aliceblue',
-    background: '282525',  
+    background: '#282525',  
     primary: '#307E89',  
     secondary: '#C0C0C0',  
   };

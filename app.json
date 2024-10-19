@@ -7,10 +7,11 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "backgroundColor": "#282525" ,
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/logo-projeto.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#282525"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +19,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#282525"
       }
     },
     "web": {

@@ -1,11 +1,10 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { View, Button, Text, Image, StyleSheet } from 'react-native';
+import { View, Button, Text, Image, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Avaliacaos from '../adm_paginas/avaliacao/av';
-import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -44,7 +43,7 @@ export default function HomeScreen() {
           <View style={styles.column }>
 
             <View style={styles.btn_aula }>
-              
+
 
                   <TouchableOpacity 
                     style={styles.button} 
@@ -115,17 +114,22 @@ export default function HomeScreen() {
 
         <View  style={styles.avaliacaos}>
 
-          <View style={styles.btn_avaliacao}>
-          
-          <TouchableOpacity 
-              style={styles.button} 
-              onPress={() => router.push('/adm_paginas/avaliacao/av')}>
-              <Image
-                source={require('@/assets/images/icone-home.png')}
-                style={styles.icon}
-              />
-              <Text style={styles.buttonText}>Avaliação</Text>
-            </TouchableOpacity>
+          <View style={styles.btn_avaliacao}> 
+            
+            <Image source={require('@/assets/images/img-av.png')} 
+                      style={styles.background} />
+                        
+                        <TouchableOpacity 
+                            style={styles.button} 
+                            onPress={() => router.push('/adm_paginas/avaliacao/av')}>
+                            <Image
+                              source={require('@/assets/images/icone-home.png')}
+                              style={styles.icon}
+                            />
+                            <Text style={styles.buttonText}>Avaliação</Text>
+                          </TouchableOpacity>
+
+                 
             
             </View>
 
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: estilo_padrao.Colors.background,
+    backgroundColor: '#282525',
   },
   row: {    
     flex: 3,
@@ -166,9 +170,17 @@ const styles = StyleSheet.create({
     paddingBottom: '100%',
     alignItems: 'center',
   },
+  background: {
+    position: 'absolute',
+    width: '99%',
+    height: '99%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20
+  },
   btn_aula:{
     flex: 2,
-    backgroundColor: estilo_padrao.Colors.primary,
+    backgroundColor: '#307E89',
     borderRadius: 20,
     margin: 10
 
@@ -177,13 +189,13 @@ const styles = StyleSheet.create({
   btn_salas:{
     flex: 1.2,
     margin: 10,
-    backgroundColor: estilo_padrao.Colors.primary,
+    backgroundColor: '#307E89',
     borderRadius: 20,
 
   },
   btn_prof:{
     flex: 1.8,
-    backgroundColor: estilo_padrao.Colors.primary,
+    backgroundColor: '#307E89',
     borderRadius: 20,
     margin: 10
 
@@ -191,24 +203,23 @@ const styles = StyleSheet.create({
   },
   btn_alunos:{
     flex: 1.8,
-    backgroundColor: estilo_padrao.Colors.primary,
+    backgroundColor: '#307E89',
     borderRadius: 20,
     margin: 10
 
   },
   btn_avaliacao:{
+    alignItems: 'center',
     flex: 1.8,
-    backgroundColor: estilo_padrao.Colors.primary,
+    backgroundColor: '#307E89',
     borderRadius: 20,
     margin: 10
     
   },
   buttonText: {
     color: '#fff',
-    textAlign: 'center',
+    marginTop: 5,
     fontSize: 16,
-    fontWeight: 'bold',
-    paddingVertical: 10,
   },
   icon: {
     width: 30,

@@ -23,7 +23,7 @@ export default function TabLayout() {
     >
       {/* Aba Home */}
       <Tabs.Screen
-        name="home"
+        name="prof_home"
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
@@ -36,7 +36,7 @@ export default function TabLayout() {
 
       {/* Aba Mídia */}
       <Tabs.Screen
-        name="midia"
+        name="prof_midia"
         options={{
           title: 'Mídia',
           tabBarIcon: ({ color }) => (
@@ -49,25 +49,12 @@ export default function TabLayout() {
 
       {/* Aba Notificações */}
       <Tabs.Screen
-        name="notificaçao"
+        name="prof_notificaçao"
         options={{
           title: 'Notificações',
           tabBarIcon: ({ color }) => (
             <Image
             source={require('@/assets/images/icone-notificacao.png')}  
-            style={{ width: 24, height: 24, tintColor: color }}/>
-          ),
-        }}
-      />
-
-      {/* Aba Financeiro */}
-      <Tabs.Screen
-        name="financeiro"
-        options={{
-          title: 'Financeiro',
-          tabBarIcon: ({ color }) => (
-            <Image
-            source={require('@/assets/images/icone-financeiro.png')}  
             style={{ width: 24, height: 24, tintColor: color }}/>
           ),
         }}
