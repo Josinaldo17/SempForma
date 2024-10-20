@@ -140,3 +140,39 @@ def select_avaliacao():
     ])
 
     return resultado
+
+def select_notificacoes():
+    query = text('SELECT * FROM acad.notificacao')
+    result = db.session.execute(query)
+    mensagem = result.fetchall()
+
+    resultado = jsonify([
+        {
+            'id': dados[0],
+            'matricula_des': dados[1],
+            'matricula_ori': dados[2],
+            'tipo': dados[3],
+            'mensagem': dados[4],
+            'dia': dados[5]
+        } for dados in mensagem
+    ])
+
+    return resultado
+
+def select_notificacao(matricula):
+    query = text('SELECT * FROM acad.notificacao WHERE matricula_des = :matricula OR matricula_des =  0')
+    result = db.session.execute(query,{'matricula': matricula} )
+    mensagem = result.fetchall()
+
+    resultado = jsonify([
+        {
+            'id': dados[0],
+            'matricula_des': dados[1],
+            'matricula_ori': dados[2],
+            'tipo': dados[3],
+            'mensagem': dados[4],
+            'dia': dados[5]
+        } for dados in mensagem
+    ])
+
+    return resultado

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
 import { construirUrl } from '@/assets/padroes/apiConfig';
+import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
 const Avaliacaos = () => {  
   const navigation = useNavigation();
@@ -74,21 +75,24 @@ const Avaliacaos = () => {
 
   if (loading) {
     
-    return( 
-      <View style={styles.container}>
-
-        <TextInput />
-
-        <OrbitProgress color="#307E89" size="medium" text="" textColor="" />    
-      
-      </View>
-  );  
+    return <> 
+       <View  
+       style={{
+            flex: 1,
+            backgroundColor:estilo_padrao.Colors.background,
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}>
+       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       </View> 
+        </>;
   }
+
 
   return(
     <View style={styles.container}>
       
-      <View>
+      <View style={styles.containerinput} >
 
         <TextInput />
 
@@ -108,7 +112,14 @@ const Avaliacaos = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: estilo_padrao.Colors.background,
     padding: 10,
+  },
+  containerinput:{
+    borderWidth: 2,
+    marginVertical: 10,
+    borderColor: estilo_padrao.Colors.primary,
+
   },
   item: {
     padding: 10,

@@ -4,6 +4,7 @@ import { OrbitProgress } from 'react-loading-indicators';
 import axios from 'axios';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import { useNavigation } from '@react-navigation/native';
+import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
 const ProfessoresAdm = () => {
   
@@ -62,8 +63,19 @@ const ProfessoresAdm = () => {
   );
 
   if (loading) {  
-    return <OrbitProgress color="#307E89" size="medium" text="" textColor="" />;    
+    return <> 
+       <View  
+       style={{
+            flex: 1,
+            backgroundColor:estilo_padrao.Colors.background,
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}>
+       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       </View> 
+        </>;
   }
+
 
   return (
     <View style={styles.container}>
