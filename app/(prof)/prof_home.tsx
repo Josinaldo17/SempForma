@@ -7,7 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Avaliacaos from '../adm_paginas/avaliacao/av';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
-export default function HomeScreen() {
+export default function Professor_Home() {
   const router = useRouter();
   const navigation = useNavigation();
   const [matricula, setMatricula] = useState('');
@@ -51,7 +51,7 @@ export default function HomeScreen() {
                     onPress={() => router.push('/adm_paginas/salas/aulas')}
                   >
                     <Image
-                      source={require('@/assets/images/icone-home.png')}
+                      source={require('@/assets/images/icone-aula.png')}
                       style={styles.icon}
                     />
                     <Text style={styles.buttonText}>Aula</Text>
@@ -65,7 +65,7 @@ export default function HomeScreen() {
                     onPress={() => router.push('/adm_paginas/professores/professores_adm')}
                   >
                     <Image
-                      source={require('@/assets/images/icone-home.png')}
+                      source={require('@/assets/images/icone-professor.png')}
                       style={styles.icon}
                     />
                     <Text style={styles.buttonText}>Professor</Text>
@@ -86,7 +86,7 @@ export default function HomeScreen() {
                     onPress={() => router.push('/adm_paginas/salas/horarios')}
                   >
                     <Image
-                      source={require('@/assets/images/icone-home.png')}
+                      source={require('@/assets/images/icone-aula-online.png')}
                       style={styles.icon}
                     />
                     <Text style={styles.buttonText}>Salas</Text>
@@ -100,7 +100,7 @@ export default function HomeScreen() {
                     onPress={() => router.push('/adm_paginas/alunos/inicio')}
                   >
                     <Image
-                      source={require('@/assets/images/icone-home.png')}
+                      source={require('@/assets/images/icone-pessoas.png')}
                       style={styles.icon}
                     />
                     <Text style={styles.buttonText}>Alunos</Text>
@@ -121,8 +121,8 @@ export default function HomeScreen() {
               style={styles.button} 
               onPress={() => router.push('/adm_paginas/avaliacao/av')}>
               <Image
-                source={require('@/assets/images/icone-home.png')}
-                style={styles.icon}
+                source={require('@/assets/images/icone-avaliacao.png')}
+                style={styles.iconav}
               />
               <Text style={styles.buttonText}>Avaliação</Text>
             </TouchableOpacity>
@@ -211,7 +211,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: '70%',
+    height: '145%',
+  },
+  iconav: {
+    width: '22%',
+    height: '80%',
   }
 });

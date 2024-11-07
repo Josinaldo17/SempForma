@@ -30,7 +30,9 @@ export default function TabLayout() {
             <Image
             source={require('@/assets/images/icone-home.png')}  
             style={{ width: 24, height: 24, tintColor: color }}/>
-          ),
+          ),tabBarLabelStyle: {
+            color: '#FFF',
+          },
         }}
       />
 
@@ -42,7 +44,9 @@ export default function TabLayout() {
             <Image
             source={require('@/assets/images/icone-notificacao.png')}  
             style={{ width: 24, height: 24, tintColor: color }}/>
-          ),
+          ),tabBarLabelStyle: {
+            color: '#FFF',
+          },
         }}
       />
     </Tabs>

@@ -85,7 +85,7 @@ const LoginScreen = () => {
                             secureTextEntry
                             style={styles.input}
                         />
-                        <Link  href="/" style={styles.link_esqueci}>Esqueci a Senha !</Link>
+                        <Link  href="/login_paginas/esqueci_senha" style={styles.link_esqueci}>Esqueci a Senha !</Link>
 
                         {loading ? (
                             <ActivityIndicator style={styles.loading} size="large" color="#307E89" />
@@ -100,7 +100,7 @@ const LoginScreen = () => {
 
                         <View style={{flexDirection: 'row'}}>
                             <Text style={styles.text_cadastro} >E novo por aqui ? </Text>
-                            <Link style={styles.link_cadastro} href="/">Cadastre-se</Link>
+                            <Link style={styles.link_cadastro} href="/login_paginas/cadastro">Cadastre-se</Link>
 
 
                         </View>

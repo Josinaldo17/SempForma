@@ -5,16 +5,18 @@ import {formatarData} from '@/assets/padroes/funçoes';
 import axios from 'axios';
 import{construirUrl} from '@/assets/padroes/apiConfig';
 import { OrbitProgress } from 'react-loading-indicators';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Prof_notificacao = () => {
-
+  
+  const [matricula, setMatricula] = useState('');
   const [dadosMensagem, setDados] = useState([]);
   const [loading, setLoading] = useState(true);  
 
-  const buscar_notificacao = async () =>{
-    try{
-      const response = await axios.get(construirUrl('notificacao')) ;
-      setDados(response.data);           
+  const buscar_notificacao = async (matricula) => {
+    try {
+      const response = await axios.get(construirUrl(`notificacao/${matricula}`));
+      setDados(response.data);      
       setLoading(false); 
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
@@ -22,9 +24,16 @@ const Prof_notificacao = () => {
   };
 
   useEffect(() => {
-    buscar_notificacao();
+    async function fetchMatricula() {
+      const pegar_matricula = await AsyncStorage.getItem('matricula');
+      const matriculaArmazenada = pegar_matricula || '';
+      setMatricula(matriculaArmazenada);
+      if (matriculaArmazenada) {
+        buscar_notificacao(matriculaArmazenada); 
+      }
+    }
+    fetchMatricula();
   }, []);
-
   
   const renderNotificacao = ({ item }) => (
 
@@ -38,7 +47,7 @@ const Prof_notificacao = () => {
       </View>
       <View style={styles.row}>
         <Text style={styles.label}>Destinatário:</Text>
-        <Text style={styles.destinatario}>{item.matricula_ori}</Text>
+        <Text style={styles.destinatario}>{item.matricula_des}</Text>
       </View>
       <Text style={styles.data}>{formatarData(item.dia)}</Text>
 
@@ -70,7 +79,7 @@ const Prof_notificacao = () => {
 
       <TouchableOpacity>
         <Image
-        source = {require('@/assets/images/icone-home.png')}
+        source = {require('@/assets/images/icone-adicionar.png')}
         style={styles.iconDestino}
         
         />
@@ -82,7 +91,7 @@ const Prof_notificacao = () => {
         />
         <TouchableOpacity>
         <Image
-        source = {require('@/assets/images/icone-home.png')}
+        source = {require('@/assets/images/icone-enviar.png')}
         style={styles.iconenviar}
         
         />

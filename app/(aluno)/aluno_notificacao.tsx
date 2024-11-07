@@ -29,7 +29,7 @@ const Aluno_notificacao = () => {
       const matriculaArmazenada = pegar_matricula || '';
       setMatricula(matriculaArmazenada);
       if (matriculaArmazenada) {
-        buscar_notificacao(matriculaArmazenada); // Passa a matrícula para a função de busca
+        buscar_notificacao(matriculaArmazenada); 
       }
     }
     fetchMatricula();

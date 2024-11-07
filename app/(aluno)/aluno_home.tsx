@@ -25,12 +25,6 @@ const AlunoHome = () => {
 
     <View style={styles.container}>
       
-      <View>
-      <Text>HOME DO ALUNO</Text>
-      <TouchableOpacity style={{backgroundColor : 'red'} } onPress={sair} >
-        <Text>Sair</Text>
-      </TouchableOpacity>
-    </View>
       <View  style={styles.avaliacaos}>
 
 
@@ -44,7 +38,7 @@ const AlunoHome = () => {
                   onPress={() => router.push('/(aluno)/aluno_home')}
                 >
                   <Image
-                    source={require('@/assets/images/icone-home.png')}
+                    source={require('@/assets/images/icone-aula.png')}
                     style={styles.icon}
                   />
                   <Text style={styles.buttonText}>Aula</Text>
@@ -65,10 +59,10 @@ const AlunoHome = () => {
                   onPress={() => router.push('/(aluno)/aluno_home')}
                 >
                   <Image
-                    source={require('@/assets/images/icone-home.png')}
+                    source={require('@/assets/images/icone-professor.png')}
                     style={styles.icon}
                   />
-                  <Text style={styles.buttonText}>Salas</Text>
+                  <Text style={styles.buttonText}>Sala</Text>
                 </TouchableOpacity>
 
             </View>
@@ -87,8 +81,8 @@ const AlunoHome = () => {
             style={styles.button} 
             onPress={() => router.push('/(aluno)/aluno_home')}>
             <Image
-              source={require('@/assets/images/icone-home.png')}
-              style={styles.icon}
+                source={require('@/assets/images/icone-avaliacao.png')}
+                style={styles.iconav}
             />
             <Text style={styles.buttonText}>Avaliação</Text>
           </TouchableOpacity>
@@ -177,10 +171,14 @@ buttonText: {
   paddingVertical: 10,
 },
 icon: {
-  width: 30,
-  height: 30,
+  width: '25%',
+  height: '110%',
+},
+iconav: {
+  width: '42%',
+  height: '150%',
 }
-});
+}); 
 
 
 export default AlunoHome;

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import { OrbitProgress } from 'react-loading-indicators';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
+import { useRouter, Stack, Link } from 'expo-router';
 
 const Avaliacaos = () => {  
   const navigation = useNavigation();
+  const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);  
  
@@ -19,11 +21,18 @@ const Avaliacaos = () => {
       title: 'Avaliaçoes',
       headerTitleAlign: 'center',
       headerRight: () => (
-        <Button
-          onPress={() => alert('Botão foi pressionado!')}
-          title="Info"
-          color="#000"
+        <TouchableOpacity onPress={() => { router.push('./criar_av');}}>
+        <Image
+        source = {require('@/assets/images/icone-adicionar.png')}
+        style={{
+          width: 30,
+          height: 30,
+          margin: 10,
+    
+         }}
+        
         />
+        </TouchableOpacity>
       ),
     });
   }, [navigation]);
@@ -84,7 +93,8 @@ const Avaliacaos = () => {
             justifyContent: 'center'
         }}>
        <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
-       </View> 
+       </View>
+        
         </>;
   }
 

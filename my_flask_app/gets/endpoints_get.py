@@ -142,7 +142,7 @@ def select_avaliacao():
     return resultado
 
 def select_notificacoes():
-    query = text('SELECT * FROM acad.notificacao')
+    query = text('SELECT * FROM acad.notificacao ORDER BY id DESC;')
     result = db.session.execute(query)
     mensagem = result.fetchall()
 
@@ -160,7 +160,7 @@ def select_notificacoes():
     return resultado
 
 def select_notificacao(matricula):
-    query = text('SELECT * FROM acad.notificacao WHERE matricula_des = :matricula OR matricula_des =  0')
+    query = text('SELECT * FROM acad.notificacao WHERE matricula_des = :matricula OR matricula_des =  0 ORDER BY id DESC;')
     result = db.session.execute(query,{'matricula': matricula} )
     mensagem = result.fetchall()
 
@@ -173,6 +173,25 @@ def select_notificacao(matricula):
             'mensagem': dados[4],
             'dia': dados[5]
         } for dados in mensagem
+    ])
+
+    return resultado
+
+
+def select_prox_aula():
+    query = text('SELECT id, id_treino, id_sala, dia, status, professor FROM acad.aula WHERE status = :Pendente ORDER BY dia ASC LIMIT 1')
+    result = db.session.execute(query,{'Pendente': 'Pendente'} )
+    dados_aula = result.fetchall()
+
+    resultado = jsonify([
+        {
+            'id': dado[0],
+            'id_treino': dado[1],
+            'id_sala': dado[2],
+            'dia': dado[3],
+            'status': dado[4],
+            'professor': dado[5]
+        } for dado in dados_aula
     ])
 
     return resultado

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TextInput, Modal, TouchableOpacity, Image } from 'react-native';
 import { OrbitProgress } from 'react-loading-indicators';
 import axios from 'axios';
 import { construirUrl } from '@/assets/padroes/apiConfig';
@@ -10,18 +10,32 @@ const ProfessoresAdm = () => {
   
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);  
+  const [loading, setLoading] = useState(true);
+  const [isProfileModalVisible, setProfileModalVisible] = useState(true);
+  
+ 
+  
+
+  const toggleProfileModal = () => setProfileModalVisible(!isProfileModalVisible);
+  
   
   useEffect(() => {
     navigation.setOptions({
       title: 'Professores',
       headerTitleAlign: 'center',
       headerRight: () => (
-        <Button
-          onPress={() => alert('Botão foi pressionado!')}
-          title="Info"
-          color="#000"
+        <TouchableOpacity onPress={toggleProfileModal}>
+        <Image
+        source = {require('@/assets/images/icone-adicionar.png')}
+        style={{
+          width: 30,
+          height: 30,
+          margin: 10,
+    
+         }}
+        
         />
+        </TouchableOpacity>
       ),
     });
   }, [navigation]);
@@ -73,6 +87,70 @@ const ProfessoresAdm = () => {
         }}>
        <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
        </View> 
+       <Modal
+        visible={isProfileModalVisible}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={toggleProfileModal}
+      >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+            
+        <View style={styles.card}>
+          
+          <TouchableOpacity onPress={toggleProfileModal} >
+            <Image
+                source={require('@/assets/images/icone-X.png') } style={{
+                  width: 60,
+                  height: 30,
+                  left: 10,
+                  
+            
+                  }} />
+            </TouchableOpacity>
+        {/* Ícone de perfil (imagem do usuário) */}
+        <Image
+                source={require('@/assets/images/icone-usuario-de-perfil.png')}
+          style={styles.profileImage}
+        />
+
+        <View style={styles.infoRow}>
+          <View style={styles.infoColumn}>
+            
+            <Text>Nome</Text>
+              <TextInput
+                style={styles.input}
+                keyboardType="numeric"
+              />
+    
+
+            <Text>Cpf:</Text>
+            <TextInput
+              style={styles.input}
+              keyboardType="numeric"
+            />
+            <Text>Sala</Text>
+              <TextInput
+                style={styles.input}
+                keyboardType="numeric"
+              />
+    
+
+            <Text>Data de nascimento</Text>
+            <TextInput
+              style={styles.input}
+              keyboardType="numeric"
+            />
+          </View>
+        </View>
+
+        {/* Botão de Avaliação */}
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>ADICIONAR</Text>
+        </TouchableOpacity>
+
+      </View>
+        </View>
+      </Modal> 
         </>;
   }
 
@@ -111,6 +189,81 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     color: '#555',
   },
+  card: {
+    backgroundColor: '#f4f4f4',
+    width: '80%',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+  }, input: {
+    width: '80%',
+    height: 50,
+    borderColor: estilo_padrao.Colors.primary,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 10,  
+    alignItems: 'center',
+    textAlign: 'center',
+    padding: 5,
+    color: '#fff',
+    fontSize: 15
+  },
+  profileImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginBottom: 10,
+  },
+  nameText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  infoText: {
+    fontSize: 12,
+    color: '#6b6b6b',
+  },
+  infoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginTop: 10,
+  },
+  infoColumn: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  infoLabel: {
+    fontSize: 12,
+    color: '#6b6b6b',
+  },
+  infoValue: {
+    fontSize: 16,
+    color: '#285b67',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#285b67',
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  resetButton: {
+    backgroundColor: '#d32f2f',
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
+  resetButtonText: {
+    color: '#fff',
+    fontSize: 16,
+  }
 });
 
 export default ProfessoresAdm;
