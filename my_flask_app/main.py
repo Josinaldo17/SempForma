@@ -4,7 +4,7 @@ import jwt
 from sqlalchemy import text
 import datetime
 from config import Config, db 
-from gets.endpoints_get import select_alunos, select_aluno, select_sala, select_dados_da_sala, select_professor, select_avaliacao, select_notificacoes, select_notificacao, select_prox_aula
+from gets.endpoints_get import select_alunos, select_aluno, select_sala, select_dados_da_sala, select_professor, select_avaliacao, select_avaliacoes, select_notificacoes, select_notificacao, select_prox_aula
 from posts.endpoints_jwt import  autenticar_usuario, token_required
 from posts.endpoints_posts import  enviar_cobranca, adicionar_avaliacao
 
@@ -36,7 +36,11 @@ def get_dados_sala(id,dia):
 
 @app.route('/avaliaçoes', methods=['GET'])
 def get_avalicao(): 
-    return select_avaliacao()
+    return select_avaliacoes()
+
+@app.route('/avaliaçao/<int:matricula>', methods=['GET'])
+def get_avaliacao(matricula): 
+    return select_avaliacao(matricula)
 
 @app.route('/avaliaçao', methods=['POST'])
 def insert_avalicao():

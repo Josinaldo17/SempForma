@@ -11,7 +11,7 @@ const ProfessoresAdm = () => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isProfileModalVisible, setProfileModalVisible] = useState(true);
+  const [isProfileModalVisible, setProfileModalVisible] = useState(false);
   
  
   
@@ -23,6 +23,15 @@ const ProfessoresAdm = () => {
     navigation.setOptions({
       title: 'Professores',
       headerTitleAlign: 'center',
+      headerStyle: {
+        backgroundColor: estilo_padrao.Colors.background, 
+        borderBottomWidth: 1, 
+        borderBottomColor: estilo_padrao.Colors.primary, 
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold', 
+        color: '#fff', 
+      },
       headerRight: () => (
         <TouchableOpacity onPress={toggleProfileModal}>
         <Image
@@ -87,7 +96,22 @@ const ProfessoresAdm = () => {
         }}>
        <ActivityIndicator size="large" color="#307E89" />     
        </View> 
-       <Modal
+       
+        </>;
+  }
+
+
+  return (
+    <>
+    <View style={styles.container}>
+      <FlatList
+        data={data}           
+        keyExtractor={(item) => item.matricula.toString()}        
+        renderItem={renderItem}  
+      />
+    </View>
+    
+    <Modal
         visible={isProfileModalVisible}
         transparent={true}
         animationType="slide"
@@ -151,18 +175,7 @@ const ProfessoresAdm = () => {
       </View>
         </View>
       </Modal> 
-        </>;
-  }
-
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={data}           
-        keyExtractor={(item) => item.matricula.toString()}        
-        renderItem={renderItem}  
-      />
-    </View>
+      </>
   );
 };
 

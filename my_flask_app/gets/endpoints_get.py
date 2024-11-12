@@ -105,9 +105,45 @@ def select_dados_da_sala(p_id_sala, p_dia):
 
     return resultado
 
-def select_avaliacao():
+def select_avaliacoes():
     query = text('SELECT * FROM acad.avaliacao')
     result = db.session.execute(query)
+    avaliacoes = result.fetchall()
+
+    resultado = jsonify([
+        {
+            'id': avaliacao[0],
+            'matricula_professor': avaliacao[1],
+            'dia': avaliacao[2],
+            'status': avaliacao[3],
+            'pagamento': avaliacao[4],
+            'matricula_aluno': avaliacao[5],
+            'cintura': avaliacao[6],
+            'braco_dc': avaliacao[7],
+            'braco_d': avaliacao[8],
+            'braco_ec': avaliacao[9],
+            'braco_e': avaliacao[10],
+            'coxa_d': avaliacao[11],
+            'coxa_e': avaliacao[12],
+            'pt_d': avaliacao[13],
+            'pt_e': avaliacao[14],
+            'torax': avaliacao[15],
+            'obs': avaliacao[16],
+            'imc': avaliacao[17],
+            'gordura_corporal': avaliacao[18],
+            'musculo_esqueletico': avaliacao[19],
+            'metabolismo_repouso': avaliacao[20],
+            'idade_bio': avaliacao[21],
+            'gordura_visceral': avaliacao[22],
+            'tempo_gravidez': avaliacao[23],
+        } for avaliacao in avaliacoes
+    ])
+
+    return resultado
+
+def select_avaliacao(matricula):
+    query = text('SELECT * FROM acad.avaliacao WHERE matricula_aluno = :matricula')
+    result = db.session.execute(query,{'matricula': matricula})
     avaliacoes = result.fetchall()
 
     resultado = jsonify([

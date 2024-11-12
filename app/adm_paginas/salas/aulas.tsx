@@ -21,6 +21,15 @@ const Aulas = () => {
     navigation.setOptions({
       title: titulo,
       headerTitleAlign: 'center',
+      headerStyle: {
+        backgroundColor: estilo_padrao.Colors.background, 
+        borderBottomWidth: 1, 
+        borderBottomColor: estilo_padrao.Colors.primary, 
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold', 
+        color: '#fff', 
+      },
       headerRight: () => (
         <TouchableOpacity style={{backgroundColor: 'green', borderRadius: 10}} onPress={() => alert('Botão foi pressionado!')} >
         <Image

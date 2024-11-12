@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity, Image, ActivityIndicator, ScrollView, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
@@ -10,9 +11,10 @@ import { useRouter, Stack, Link } from 'expo-router';
 const Avaliacaos = () => {  
   const navigation = useNavigation();
   const router = useRouter();
-  const [data, setData] = useState([]);  
-  const [dataAluno, setDataAluno] = useState([]);
-  const [loading, setLoading] = useState(true);  
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);   
+  const [matricula, setMatricula] = useState(''); 
+  const [semAvaliaçao, setSemAvaliaçao] = useState(false)
  
   
   const [matriculaAluno, setMatriculaAluno] = useState();  
@@ -23,15 +25,6 @@ const Avaliacaos = () => {
     navigation.setOptions({
       title: 'Avaliaçoes',
       headerTitleAlign: 'center',
-      headerStyle: {
-        backgroundColor: estilo_padrao.Colors.background, 
-        borderBottomWidth: 1, 
-        borderBottomColor: estilo_padrao.Colors.primary, 
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold', 
-        color: '#fff', 
-      },
       headerRight: () => (
         <TouchableOpacity onPress={() => { router.push('./criar_av');}}>
         <Image
@@ -49,69 +42,76 @@ const Avaliacaos = () => {
     });
   }, [navigation]);
 
-  useEffect(() => {
-    fetchData();
-    Buscar_dados();
-  }, []);
-
-  const Buscar_dados = async () => {
-    try {
-      const response = await axios.get(construirUrl('alunos'));
-      setDataAluno(response.data); 
-      setLoading(false); 
-    } catch (error) {
-      console.error('Erro ao buscar dados:', error);
-    }
-  };
-
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(construirUrl('avaliaçoes'));
+      const response = await axios.get(construirUrl('avaliaçao/'+ matricula));
+      console.log(matricula);
       setData(response.data); 
-      setLoading(false); 
+      setLoading(false);
+      if (response.data.length === 0) {
+        setSemAvaliaçao(true);
+        console.log('olaaaaaaa');
+      }
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
     }
   };
 
-  
-  const toggleProfileModal = () => {
-    setProfileModalVisible(false);
-    setMatriculaAluno(null); 
-  };
+  useEffect(() => {
+    async function fetchMatricula() {
+      const pegar_matricula = await AsyncStorage.getItem('matricula');
+      const matriculaArmazenada = pegar_matricula || '';
+      setMatricula(matriculaArmazenada);
+      if (matriculaArmazenada) {
+        fetchData(matricula); 
+      }
+    }
+    fetchMatricula();
+  },);
 
-    
+  
+  const toggleProfileModal = () => setProfileModalVisible(!isProfileModalVisible);
 
   const VizualizarAluno = (matricula) => {
     const aluno = data.find((item) => item.matricula_aluno === matricula);
+    console.log(aluno);
     setMatriculaAluno(aluno);
     setProfileModalVisible(!isProfileModalVisible);
   };
     
   
-  const renderItem = ({ item }) => {
-    const aluno = dataAluno.find((aluno) => aluno.matricula === item.matricula_aluno);
-    return (
-      <TouchableOpacity onPress={() => VizualizarAluno(item.matricula_aluno)}>
-        <View style={styles.alunos}>
-          <View style={styles.alunos_icone}>
-            <Image
-              source={require('@/assets/images/icone-usuario-de-perfil.png')}
-              style={{ width: 30, height: 30, margin: 10 }}
-            />
-          </View>
-          <View style={styles.alunos_nome}>
-            <Text style={styles.text}>{aluno ? aluno.nome : 'Indefinido'}</Text>
-          </View>
-          <View style={styles.alunos_matricula}>
-            <Text style={styles.text}>{aluno ? aluno.matricula : 'Indedinido'}</Text>
-            <Text style={styles.text}>{aluno ? aluno.horario : 'Indefinido'}</Text>
-          </View>
-        </View>
-      </TouchableOpacity>
-    );
-  };
+  const renderItem = ({ item }) => (
+    
+    
+
+    <TouchableOpacity onPress={() => VizualizarAluno(item.matricula_aluno)} >    
+      <View style={styles.alunos}>
+
+              <View style={styles.alunos_icone}>
+                  <Image
+                source = {require('@/assets/images/icone-usuario-de-perfil.png')}
+                style={{
+                  width: 30,
+                  height: 30,
+                  margin: 10,
+            
+                }}
+                    
+                />
+              </View>
+
+              <View style={styles.alunos_nome}>
+                      <Text style={styles.text}>{item.nome}</Text>
+              </View >
+              
+              <View style={styles.alunos_matricula}>
+                <Text style={styles.text}>{item.matricula}</Text>
+                <Text style={styles.text}>{item.horario}</Text>
+              </View>
+        </View>      
+    </TouchableOpacity>
+  );
 
   if (loading) {
     
@@ -133,38 +133,19 @@ const Avaliacaos = () => {
   return(
     <>
     <View style={styles.container}>
-      
-      <View style={styles.containerinput} >
 
-
-          <TouchableOpacity>
-          <Image
-          source = {require('@/assets/images/icone-filtro.png')}
-          style={styles.iconelupa}
-          
-          />
-          </TouchableOpacity>
-
-          <TextInput
-            placeholder="Matricula"
-            style={styles.buscaInput}
-          />
-          <TouchableOpacity>
-          <Image
-          source = {require('@/assets/images/icone-lupa.png')}
-          style={styles.iconelupa}
-          
-          />
-          </TouchableOpacity>
-          
-
+    { semAvaliaçao ? (
+      <View>
+        <Text>Sem Avaliação</Text>
       </View>
-
+    ) : (
       <FlatList
         data={data}           
         keyExtractor={(item) => item.id}        
         renderItem={renderItem}  
-      />
+      />            
+        )
+      }
     </View>
     <ScrollView   style={styles.teste}>
 
@@ -266,8 +247,8 @@ const Avaliacaos = () => {
                           <Text style={styles.infoValue}>{matriculaAluno.torax || 'Nenhum'}</Text>
                         </View>
                         <View style={styles.infoColumn}>
-                          <Text style={styles.infoLabel}>Gravidez</Text>
-                          <Text style={styles.infoValue}>{matriculaAluno.tempo_gravidez || 'Nenhum'}</Text>
+                          <Text style={styles.infoLabel}>Observação</Text>
+                          <Text style={styles.infoValue}>{matriculaAluno.obs || 'Nenhuma'}</Text>
                         </View>
                       </View>
 
@@ -288,7 +269,7 @@ const Avaliacaos = () => {
                           <Text style={styles.infoValue}>{matriculaAluno.musculo_esqueletico || 'Nenhum'}</Text>
                         </View>
                         <View style={styles.infoColumn}>
-                          <Text style={styles.infoLabel}>Metabolismo Repouso</Text>
+                          <Text style={styles.infoLabel}>Metabolismo de Repouso</Text>
                           <Text style={styles.infoValue}>{matriculaAluno.metabolismo_repouso || 'Nenhum'}</Text>
                         </View>
                       </View>
@@ -306,8 +287,8 @@ const Avaliacaos = () => {
 
                       <View style={styles.infoRow}>
                         <View style={styles.infoColumn}>
-                          <Text style={styles.infoLabel}>Observação</Text>  
-                          <Text style={styles.infoValue}>{matriculaAluno.obs || 'Nenhuma'}</Text>
+                          <Text style={styles.infoLabel}>Tempo de Gravidez</Text>
+                          <Text style={styles.infoValue}>{matriculaAluno.tempo_gravidez || 'Nenhum'}</Text>
                         </View>
                       </View>
   
@@ -352,7 +333,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     padding: 10,
     borderRightWidth: 2,
-    borderLeftWidth: 2,
     borderColor: estilo_padrao.Colors.primary, 
    },
   iconelupa:{
@@ -389,7 +369,6 @@ const styles = StyleSheet.create({
   },card: {
     backgroundColor: '#f4f4f4',
     width: '90%',
-    marginVertical: 20,
     borderRadius: 10,
     padding: 10,
     alignItems: 'center',

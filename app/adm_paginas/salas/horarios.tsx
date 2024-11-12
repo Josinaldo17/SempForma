@@ -24,6 +24,15 @@ const Horarios = () => {
     navigation.setOptions({
       title: 'Salas',
       headerTitleAlign: 'center',
+      headerStyle: {
+        backgroundColor: estilo_padrao.Colors.background, 
+        borderBottomWidth: 1, 
+        borderBottomColor: estilo_padrao.Colors.primary, 
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold', 
+        color: '#fff', 
+      },
       headerRight: () => (
         <TouchableOpacity onPress={toggleProfileModal}>
         <Image

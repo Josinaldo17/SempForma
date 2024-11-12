@@ -79,7 +79,7 @@ const AlunoHome = () => {
         
         <TouchableOpacity 
             style={styles.button} 
-            onPress={() => router.push('/(aluno)/aluno_home')}>
+            onPress={() => router.push('/aluno_paginas/avaliacao/av')}>
             <Image
                 source={require('@/assets/images/icone-avaliacao.png')}
                 style={styles.iconav}

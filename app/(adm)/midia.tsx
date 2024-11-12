@@ -1,6 +1,6 @@
 import React , { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
-import {View, Text, StyleSheet, us } from 'react-native';
+import {View, Text, StyleSheet, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -29,32 +29,29 @@ const Midia = () => {
     }, []); 
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
-     
+    <>
      <View style={styles.footer}>
         <Text style={styles.matriculaText}>Matrícula: {matricula}</Text> 
         <TouchableOpacity style={styles.logoutButton} onPress={sair}>
           <Text style={styles.logoutButtonText}>Sair</Text>
         </TouchableOpacity>
-      </View>
-     
-      
         
-     
-    </ParallaxScrollView>
- 
+      </View>
+      <Image
+        source = {require('@/assets/images/exemplo.png')}
+        style={styles.icon}
+        
+        />
+      </>
 
   );
 };
 
 const styles = StyleSheet.create({
   footer: {
-    position: 'relative',
-    bottom: 20,
-    left: 20,
-    right: 20,
+    flex: 1,
+    zIndex: 1,
+    position: 'absolute',
     alignItems: 'center',
   },
   matriculaText: {
@@ -79,7 +76,10 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
-  },
+  },icon:{
+    width: '100%',
+    height: '100%',
+  }
 });
 
 export default Midia;
