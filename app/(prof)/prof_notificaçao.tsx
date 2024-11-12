@@ -1,10 +1,9 @@
 import React, {useEffect, useState } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet,Image, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, FlatList, StyleSheet,Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
 import {formatarData} from '@/assets/padroes/funçoes';
 import axios from 'axios';
 import{construirUrl} from '@/assets/padroes/apiConfig';
-import { OrbitProgress } from 'react-loading-indicators';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Prof_notificacao = () => {
@@ -66,7 +65,7 @@ const Prof_notificacao = () => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       <ActivityIndicator  size="large" color="#307E89" />   
        </View> 
         </>;
   }

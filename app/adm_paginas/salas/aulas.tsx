@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, StyleSheet, TouchableOpacity, TextInput, Button, ScrollView, Image } from 'react-native';
+import { View, FlatList, Text, StyleSheet, TouchableOpacity, TextInput, Button, ScrollView, Image, ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import { OrbitProgress } from 'react-loading-indicators';
 import { formatarData } from '@/assets/padroes/funçoes';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import { useNavigation } from '@react-navigation/native';
@@ -135,7 +134,8 @@ const Aulas = () => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       
+       <ActivityIndicator size="large" color="#307E89" />   
        </View> 
         </>;
   }

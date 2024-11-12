@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 export function Header({ onPressProfile, matricula }) {
   return {
@@ -21,7 +23,7 @@ export function Header({ onPressProfile, matricula }) {
             source={require('@/assets/images/usuario-de-perfil.png')}
             style={{ width: 30, height: 30, marginRight: 10 }}
           />
-          <Text>{matricula}</Text>
+          <Text>ollaaa</Text>
         </TouchableOpacity>
       </View>
     ),

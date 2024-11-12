@@ -28,7 +28,7 @@ const LoginScreen = () => {
                     style={styles.rodape}
                 >
                     <Text style={styles.title}>Acompanhe seu desempenho e seus treinamentos funcional de qualquer lugar!</Text>
-                    <TouchableOpacity style={styles.botao} onPress={ () => router.push('/redirecionarHome')}>
+                    <TouchableOpacity style={styles.botao} onPress={ () => router.push('/login_paginas/redirecionarHome')}>
                         <Text style={styles.textBotao}>Acessar</Text>
                     </TouchableOpacity>
                 </Animatable.View>

@@ -1,10 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput,Image, Modal, Picker } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput,Image, Modal, ActivityIndicator } from 'react-native';
 import { OrbitProgress } from 'react-loading-indicators';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import { useNavigation } from '@react-navigation/native';
+import { Picker} from '@react-native-picker/picker';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
 import axios from 'axios';
 
@@ -82,8 +83,8 @@ const Horarios = () => {
             backgroundColor:estilo_padrao.Colors.background,
             alignItems: 'center',
             justifyContent: 'center'
-        }}>
-       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+        }}>       
+       <ActivityIndicator size="large" color="#307E89" />    
        </View> 
         </>;
   }

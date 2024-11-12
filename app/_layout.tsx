@@ -9,6 +9,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Header } from '@/assets/padroes/header';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Previne a tela de splash de ser escondida antes que os recursos estejam carregados
 SplashScreen.preventAutoHideAsync();
@@ -67,8 +68,11 @@ export default function RootLayout() {
 
   const toggleProfileModal = () => setProfileModalVisible(!isProfileModalVisible);
 
+  
+
 
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen
@@ -85,7 +89,11 @@ export default function RootLayout() {
         />
         <Stack.Screen name="+not-found" />
       </Stack>
-      <Modal
+      
+
+    </ThemeProvider>
+    
+<Modal
         visible={isProfileModalVisible}
         transparent={true}
         animationType="slide"
@@ -162,8 +170,9 @@ export default function RootLayout() {
       </View>
         </View>
       </Modal>
-
-    </ThemeProvider>
+    
+      
+    </GestureHandlerRootView>
   );
 }
 

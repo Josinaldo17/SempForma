@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
-import { OrbitProgress } from 'react-loading-indicators';
+import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
@@ -98,7 +97,7 @@ const Alunos_inicio = () => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       <ActivityIndicator size="large" color="#307E89" />  
        </View> 
         </>;
   }
@@ -115,7 +114,7 @@ const Alunos_inicio = () => {
           </TouchableOpacity>
 
           <TextInput
-            placeholder="Nova mensagem..."
+            placeholder="Matricula"
             style={styles.buscaInput}
           />
           <TouchableOpacity>

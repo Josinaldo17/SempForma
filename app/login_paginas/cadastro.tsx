@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useRouter, Stack } from 'expo-router';
-import { View, TextInput, Button, Alert, Text, StyleSheet, ScrollView, TouchableOpacity, Picker, CheckBox } from 'react-native';
+import { View, TextInput, Button, Alert, Text, StyleSheet, ScrollView, TouchableOpacity, CheckBox } from 'react-native';
+import { Picker} from '@react-native-picker/picker';
 import { amazenar_noApp } from '@/assets/padroes/funçoes';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
+
 
 
 const CadastroAlunoScreen = () => {

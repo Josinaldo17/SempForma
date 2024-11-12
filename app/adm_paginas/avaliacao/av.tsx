@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
-import { OrbitProgress } from 'react-loading-indicators';
+import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
@@ -92,7 +91,7 @@ const Avaliacaos = () => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       <ActivityIndicator size="large" color="#307E89" />   
        </View>
         
         </>;
@@ -104,7 +103,22 @@ const Avaliacaos = () => {
       
       <View style={styles.containerinput} >
 
-        <TextInput />
+
+        <TouchableOpacity>
+          
+          </TouchableOpacity>
+
+          <TextInput
+            placeholder="Matricula"
+            style={styles.buscaInput}
+          />
+          <TouchableOpacity>
+          <Image
+          source = {require('@/assets/images/icone-lupa.png')}
+          style={styles.iconelupa}
+          
+          />
+          </TouchableOpacity>
 
       </View>
 
@@ -124,13 +138,33 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: estilo_padrao.Colors.background,
     padding: 10,
-  },
+  },  
   containerinput:{
+
     borderWidth: 2,
     marginVertical: 10,
     borderColor: estilo_padrao.Colors.primary,
-
+    flexDirection: 'row',
+    backgroundColor: '#333', 
+    borderRadius: 10,
+    marginBottom: 20 ,
+    justifyContent: 'center',
+    alignItems: 'center',   
   },
+  buscaInput: {
+    flex: 10,
+    color: '#fff',
+    fontSize: 16,
+    padding: 10,
+    borderRightWidth: 2,
+    borderColor: estilo_padrao.Colors.primary, 
+   },
+  iconelupa:{
+    width: 30,
+    height: 30,
+    margin: 5,
+
+   },
   item: {
     padding: 10,
     marginVertical: 5,
