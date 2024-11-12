@@ -38,7 +38,7 @@ const LoginScreen = () => {
                 Alert.alert('Sucesso', 'Login realizado com sucesso!');
                 setMatricula(''); // Limpa o campo de matrícula
                 setSenha(''); // Limpa o campo de senha
-                router.push('/redirecionarHome');
+                router.push('/login_paginas/redirecionarHome');
             } else {
                 Alert.alert('Erro', data.message || 'Erro ao realizar login.');
             }
@@ -60,7 +60,7 @@ const LoginScreen = () => {
                     <View style={styles.container_logo} >
 
                         <Image
-                            source={require('../assets/images/logo-projeto2.png')} 
+                            source={require('../../assets/images/logo-projeto2.png')} 
                             style={styles.logo} 
                             resizeMode='contain'        
                         />
@@ -85,7 +85,7 @@ const LoginScreen = () => {
                             secureTextEntry
                             style={styles.input}
                         />
-                        <Link  href="/" style={styles.link_esqueci}>Esqueci a Senha !</Link>
+                        <Link  href="/login_paginas/esqueci_senha" style={styles.link_esqueci}>Esqueci a Senha !</Link>
 
                         {loading ? (
                             <ActivityIndicator style={styles.loading} size="large" color="#307E89" />
@@ -100,7 +100,7 @@ const LoginScreen = () => {
 
                         <View style={{flexDirection: 'row'}}>
                             <Text style={styles.text_cadastro} >E novo por aqui ? </Text>
-                            <Link style={styles.link_cadastro} href="/">Cadastre-se</Link>
+                            <Link style={styles.link_cadastro} href="/login_paginas/cadastro">Cadastre-se</Link>
 
 
                         </View>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         borderColor:  estilo_padrao.Colors.primary, 
         padding: 15,
         color: 'white', 
-        borderRadius: '10%',
+        borderRadius: 10,
         fontSize: 25,
         textAlign: 'center',
         width: '60%'

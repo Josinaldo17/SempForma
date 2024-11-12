@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, StyleSheet, TouchableOpacity, TextInput, Button, ScrollView } from 'react-native';
+import { View, FlatList, Text, StyleSheet, TouchableOpacity, TextInput, Button, ScrollView, Image, ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import { OrbitProgress } from 'react-loading-indicators';
 import { formatarData } from '@/assets/padroes/funçoes';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import { useNavigation } from '@react-navigation/native';
@@ -23,11 +22,18 @@ const Aulas = () => {
       title: titulo,
       headerTitleAlign: 'center',
       headerRight: () => (
-        <Button
-          onPress={() => alert('Botão foi pressionado!')}
-          title="Info"
-          color="#000"
+        <TouchableOpacity style={{backgroundColor: 'green', borderRadius: 10}} onPress={() => alert('Botão foi pressionado!')} >
+        <Image
+        source = {require('@/assets/images/icone-V.png')}
+        style={{
+          width: 40,
+          height: 5,
+          margin: 20,
+    
+         }}
+        
         />
+        </TouchableOpacity>
       ),
     });
   }, [navigation]);
@@ -128,7 +134,8 @@ const Aulas = () => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       
+       <ActivityIndicator size="large" color="#307E89" />   
        </View> 
         </>;
   }

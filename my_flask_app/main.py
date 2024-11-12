@@ -4,8 +4,9 @@ import jwt
 from sqlalchemy import text
 import datetime
 from config import Config, db 
-from gets.endpoints_get import select_alunos, select_aluno, select_sala, select_dados_da_sala, select_professor, select_avaliacao, select_notificacoes, select_notificacao
+from gets.endpoints_get import select_alunos, select_aluno, select_sala, select_dados_da_sala, select_professor, select_avaliacao, select_notificacoes, select_notificacao, select_prox_aula
 from posts.endpoints_jwt import  autenticar_usuario, token_required
+from posts.endpoints_posts import  enviar_cobranca, adicionar_avaliacao
 
 app = Flask(__name__)
 app.config.from_object(Config) 
@@ -34,8 +35,12 @@ def get_dados_sala(id,dia):
     return select_dados_da_sala(id,dia)
 
 @app.route('/avaliaçoes', methods=['GET'])
-def get_avalicao():
+def get_avalicao(): 
     return select_avaliacao()
+
+@app.route('/avaliaçao', methods=['POST'])
+def insert_avalicao():
+    return adicionar_avaliacao()
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -55,6 +60,16 @@ def get_notificacoes():
 @app.route('/notificacao/<int:matricula>', methods=['GET'])
 def get_notificacao(matricula):
     return select_notificacao(matricula)
+
+@app.route('/aula', methods=['GET'])
+def get_prox_aula():
+    return select_prox_aula()
+
+
+@app.route('/cobranca', methods=['POST'])
+def conbraca():
+    data = request.json
+    return enviar_cobranca(data) 
     
 
 

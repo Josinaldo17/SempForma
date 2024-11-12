@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, FlatList, StyleSheet, Button } from 'react-native';
-import { OrbitProgress } from 'react-loading-indicators';
+import { View, Text, FlatList, StyleSheet, Button, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { construirUrl } from '@/assets/padroes/apiConfig';
 import estilo_padrao from '@/assets/padroes/estilo_padrao';
 
@@ -9,7 +9,8 @@ import axios from 'axios';
 import { TextInput } from 'react-native-gesture-handler';
 
 const Alunos_inicio = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation();  
+  const router = useRouter();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);  
   
@@ -18,11 +19,18 @@ const Alunos_inicio = () => {
       title: 'Alunos',
       headerTitleAlign: 'center',
       headerRight: () => (
-        <Button
-          onPress={() => alert('Botão foi pressionado!')}
-          title="Info"
-          color="#000"
+        <TouchableOpacity onPress={ () => router.push('../../login_paginas/cadastro')}>
+        <Image
+        source = {require('@/assets/images/icone-adicionar.png')}
+        style={{
+          width: 30,
+          height: 30,
+          margin: 10,
+    
+         }}
+        
         />
+        </TouchableOpacity>
       ),
     });
   }, [navigation]);
@@ -46,6 +54,16 @@ const Alunos_inicio = () => {
    <View style={styles.alunos}>
 
           <View style={styles.alunos_icone}>
+              <Image
+            source = {require('@/assets/images/icone-usuario-de-perfil.png')}
+            style={{
+              width: 30,
+              height: 30,
+              margin: 10,
+        
+            }}
+            
+            />
           </View>
 
           <View style={styles.alunos_nome}>
@@ -79,7 +97,7 @@ const Alunos_inicio = () => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-       <OrbitProgress color="#307E89" size="large" text="" textColor="" />  
+       <ActivityIndicator size="large" color="#307E89" />  
        </View> 
         </>;
   }
@@ -90,7 +108,22 @@ const Alunos_inicio = () => {
       
       <View style={styles.containerinput} >
 
-        <TextInput />
+
+        <TouchableOpacity>
+          
+          </TouchableOpacity>
+
+          <TextInput
+            placeholder="Matricula"
+            style={styles.buscaInput}
+          />
+          <TouchableOpacity>
+          <Image
+          source = {require('@/assets/images/icone-lupa.png')}
+          style={styles.iconelupa}
+          
+          />
+          </TouchableOpacity>
 
       </View>
 
@@ -112,11 +145,31 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   containerinput:{
+
     borderWidth: 2,
     marginVertical: 10,
     borderColor: estilo_padrao.Colors.primary,
-
+    flexDirection: 'row',
+    backgroundColor: '#333', 
+    borderRadius: 10,
+    marginBottom: 20 ,
+    justifyContent: 'center',
+    alignItems: 'center',   
   },
+  buscaInput: {
+    flex: 10,
+    color: '#fff',
+    fontSize: 16,
+    padding: 10,
+    borderRightWidth: 2,
+    borderColor: estilo_padrao.Colors.primary, 
+   },
+  iconelupa:{
+    width: 30,
+    height: 30,
+    margin: 5,
+
+   },
   alunos: {
     flexDirection: 'row',
     alignItems: 'center',
