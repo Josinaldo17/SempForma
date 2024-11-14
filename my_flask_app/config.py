@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 usuario = 'postgres'
-senha = 'cj17'
+senha = ''
 porta = '5432'
 host = 'localhost'
 banco_de_dados = 'postgres'
