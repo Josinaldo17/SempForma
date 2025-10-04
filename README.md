@@ -1,50 +1,66 @@
-# Welcome to your Expo app 👋
+# 🏋️‍♂️ Sempre em Forma App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicativo mobile desenvolvido para o gerenciamento completo de uma **academia funcional**, criando uma solução eficiente e moderna para administração interna e acompanhamento dos alunos.
 
-## Get started
+Este projeto foi construído como parte de uma disciplina de **Desenvolvimento Mobile**, com foco em usabilidade e integração com backend.
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## 🎯 Finalidade do Projeto
 
-2. Start the app
+O *Sempre em Forma App* tem como objetivo resolver desafios comuns em academias que ainda utilizam métodos manuais ou sistemas desconectados. Entre as funcionalidades propostas:
 
-   ```bash
-    npx expo start
-   ```
+- 📋 Cadastro e gerenciamento de alunos  
+- 📅 Organização de treinos, planos e aulas  
+- 🏁 Acompanhamento da evolução dos alunos  
+- 🔐 Autenticação e controle de acesso via JWT  
+- 📱 Interface amigável tanto para administradores quanto para alunos
 
-In the output, you'll find options to open the app in a
+Resultado: **mais controle, eficiência e praticidade no dia a dia da academia.**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🛠️ Tecnologias Utilizadas
 
-## Get a fresh project
+| Camada | Tecnologia |
+|--------|-----------|
+| **Frontend (Mobile)** | React Native + Expo |
+| **Backend (API REST)** | Flask (Python) |
+| **Banco de Dados** | PostgreSQL |
+| **Autenticação** | JWT (JSON Web Token) |
 
-When you're ready, run:
+---
+
+## ✅ Status do Projeto
+
+✔️ Concluído em Novembro de 2024
+📦 Entregue ao proprietário da academia para uso real
+
+---
+
+## 🖼️ Demonstração (Protótipo Visual)
+
+Você pode visualizar a interface completa do projeto no Figma:
+
+👉 https://www.figma.com/design/x6K2FIAz2UgPG0wgE2JiET/PROJETO-SEMPRE-EM-FORMA?node-id=0-1&p=f&t=QYbj042QnJrPS1BQ-0
+
+ 
+---
+
+## 🚀 Como Executar o Projeto
+
+> ⚠️ Certifique-se de que a **API (Flask + PostgreSQL)** esteja rodando e devidamente configurada no app. Sem isso, as telas podem exibir erro de carregamento.
 
 ```bash
-npm run reset-project
-```
+# Instalar dependências do projeto
+npm install
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+# Instalar dependências para suporte Web (Expo)
+npx expo install react-native-web react-dom @expo/webpack-config
 
-## Learn more
+# Instalar Expo globalmente
+npm install -g expo-cli
 
-To learn more about developing your project with Expo, look at the following resources:
+# Iniciar o aplicativo (modo web ou mobile)
+npx expo start -w
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
