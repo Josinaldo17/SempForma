@@ -32,7 +32,7 @@ Resultado: **mais controle, eficiência e praticidade no dia a dia da academia.*
 
 | Camada | Tecnologia |
 |--------|-----------|
-| **Frontend (Mobile)** |<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="25" alt="react logo"  /> <img width="8" />React Native |
+| **Frontend (Mobile)** |<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="25" alt="react logo"  /> <img width="8" />React Native + Expo <img width="80" /> |
 | **Backend (API REST)** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height="25" alt="flask logo"  /><img width="8" /> Flask (Python) |
 | **Banco de Dados** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" height="25" alt="postgresql logo"  />  <img width="8" /> PostgreSQL |
 | **Autenticação** | JWT (JSON Web Token) |
@@ -50,7 +50,7 @@ Resultado: **mais controle, eficiência e praticidade no dia a dia da academia.*
 
 Você pode visualizar a interface completa do projeto no Figma:
 
-👉 https://www.figma.com/design/x6K2FIAz2UgPG0wgE2JiET/PROJETO-SEMPRE-EM-FORMA?node-id=0-1&p=f&t=QYbj042QnJrPS1BQ-0
+👉 **[Visualizar Protótipo](https://www.figma.com/design/x6K2FIAz2UgPG0wgE2JiET/PROJETO-SEMPRE-EM-FORMA?node-id=0-1&p=f&t=QYbj042QnJrPS1BQ-0)**
 
  
 ---
