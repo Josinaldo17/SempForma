@@ -3,7 +3,7 @@
 </div>
 
 
-<img align="center" alt="" src="./src/header-gif.gif">
+<img align="center" alt="" src="./assets/images/icon.png">
 
 
 
