@@ -32,9 +32,9 @@ Resultado: **mais controle, eficiência e praticidade no dia a dia da academia.*
 
 | Camada | Tecnologia |
 |--------|-----------|
-| **Frontend (Mobile)** | React Native + Expo |
-| **Backend (API REST)** | Flask (Python) |
-| **Banco de Dados** | PostgreSQL |
+| **Frontend (Mobile)** |<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="25" alt="react logo"  /> <img width="8" />React Native |
+| **Backend (API REST)** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" height="25" alt="flask logo"  /><img width="8" /> Flask (Python) |
+| **Banco de Dados** | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" height="25" alt="postgresql logo"  />  <img width="8" /> PostgreSQL |
 | **Autenticação** | JWT (JSON Web Token) |
 
 ---
