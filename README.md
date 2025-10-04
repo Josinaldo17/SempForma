@@ -1,4 +1,12 @@
-# 🏋️‍♂️ Sempre em Forma App
+<div align="center">
+  <h1> 🏋️‍♂️ Sempre em Forma App </h1>
+</div>
+
+
+<img align="center" alt="" src="./src/header-gif.gif">
+
+
+
 
 Aplicativo mobile desenvolvido para o gerenciamento completo de uma **academia funcional**, criando uma solução eficiente e moderna para administração interna e acompanhamento dos alunos.
 
